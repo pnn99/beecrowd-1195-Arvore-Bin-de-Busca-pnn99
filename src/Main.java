@@ -15,10 +15,6 @@ public class Main {
         public int getChave() {
             return chave;
         }
-
-        public void setChave(int chave) {
-            this.chave = chave;
-        }
     }
 
     class Tree {
@@ -88,17 +84,17 @@ public class Main {
             System.out.println();
         }
 
-        public void clear() {
-            raiz = null;
-        }
+        //public void clear() {
+       //     raiz = null;
+       // }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int casos = scanner.nextInt();
 
         Main main = new Main();
-        Tree tree = main.new Tree();
+
 
         // Laço para processar os casos testes
         for (int i = 1; i <= casos; i++) {
@@ -110,6 +106,7 @@ public class Main {
                 num[j] = scanner.nextInt();
             }
 
+            Tree tree = main.new Tree();
             // Construção da arvore com os inputs
             for (int k = 0; k < size; k++) {
                 tree.add(num[k]);
@@ -122,7 +119,7 @@ public class Main {
             tree.printPosfixo();
             System.out.println();
 
-            tree.clear();
+            //tree.clear();
         }
 
         scanner.close();
