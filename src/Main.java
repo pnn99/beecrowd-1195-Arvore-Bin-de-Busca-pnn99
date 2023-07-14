@@ -1,7 +1,10 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    class Node {
+    static class Node {
         private int chave;
         Node leftNode;
         Node rightNode;
@@ -17,7 +20,7 @@ public class Main {
         }
     }
 
-    class Tree {
+    static class Tree {
         Node raiz;
 
         public Tree() {
@@ -83,31 +86,41 @@ public class Main {
             posfixo(raiz);
             System.out.println();
         }
-
-        //public void clear() {
-       //     raiz = null;
-       // }
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int casos = scanner.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader input =  new BufferedReader(new InputStreamReader(System.in));
+        int casos = Integer.parseInt(input.readLine());
 
-        Main main = new Main();
-
-
-        // Laço para processar os casos testes
+        // Laço para processar os casos de teste
         for (int i = 1; i <= casos; i++) {
-            int size = scanner.nextInt();
-            int[] num = new int[size];
+            int size = Integer.parseInt(input.readLine());
 
-            // Leitura dos Casos testes
-            for (int j = 0; j < size; j++) {
-                num[j] = scanner.nextInt();
+            // Verificar tamanho da árvore
+            if (size < 1 || size > 500) {
+                throw new IllegalArgumentException("Tamanho inválido para a árvore.");
             }
 
-            Tree tree = main.new Tree();
-            // Construção da arvore com os inputs
+            // Ler valores da árvore
+            String[] values = input.readLine().split(" ");
+
+            // Verificar quantidade de valores fornecidos
+            if (values.length != size) {
+                throw new IllegalArgumentException("Quantidade inválida de valores para a árvore.");
+            }
+
+            int[] num = new int[size];
+
+            // Leitura dos valores e verificação se são não negativos
+            for (int j = 0; j < size; j++) {
+                num[j] = Integer.parseInt(values[j]);
+                if (num[j] < 0) {
+                    throw new IllegalArgumentException("Valor inválido para a árvore.");
+                }
+            }
+
+            Tree tree = new Tree();
+            // Construção da árvore com os valores
             for (int k = 0; k < size; k++) {
                 tree.add(num[k]);
             }
@@ -119,9 +132,8 @@ public class Main {
             tree.printPosfixo();
             System.out.println();
 
-            //tree.clear();
         }
 
-        scanner.close();
+        input.close();
     }
 }

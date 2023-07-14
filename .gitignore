@@ -1,2 +1,8 @@
 .vscode/settings.json
 README.md
+out/production/ArvBin/Main$Tree.class
+.gitignore
+out/production/ArvBin/Main.class
+out/production/ArvBin/Main$Node.class
+bin/Main$Tree.class
+bin/Main$Node.class
